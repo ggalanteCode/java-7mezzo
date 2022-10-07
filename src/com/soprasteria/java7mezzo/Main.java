@@ -31,11 +31,50 @@ public class Main {
 			int contatoreMazzo=39, punteggioCarta, cartaEstrattaGiocatore, 
 					cartaEstrattaBanco, punteggioGiocatore = 0, punteggioBanco = 0;
 			boolean continuaAdEstrarre = false;
-			String nomeCarta;
+			String nomeCarta = "";
 			
-			System.out.println("Il giocatore chiede una carta al banco");
-			cartaEstrattaGiocatore = mazzo[contatoreMazzo];
-			contatoreMazzo--;
+			do {
+				System.out.println("Il giocatore chiede una carta al banco");
+				cartaEstrattaGiocatore = mazzo[contatoreMazzo];
+				contatoreMazzo--;
+				
+				int moduloCarta = cartaEstrattaGiocatore % 10;
+				
+				switch(moduloCarta) {
+				case 1:
+				case 2:
+				case 3:
+				case 4:
+				case 5:
+				case 6:
+				case 7:
+					nomeCarta = moduloCarta + " di ";
+					break;
+				case 8:
+					nomeCarta = "donna di ";
+					break;
+				case 9:
+					nomeCarta = "cavallo di ";
+					break;
+				case 10:
+					nomeCarta = "re di ";
+					break;
+				}
+				
+				if(cartaEstrattaGiocatore > 0 && cartaEstrattaGiocatore <= 10) {
+					nomeCarta = nomeCarta.concat("bastoni");
+				} else if(cartaEstrattaGiocatore > 10 && cartaEstrattaGiocatore <= 20) {
+					nomeCarta = nomeCarta.concat("coppe");
+				} else if(cartaEstrattaGiocatore > 20 && cartaEstrattaGiocatore <= 30) {
+					nomeCarta = nomeCarta.concat("denari");
+				} else {
+					nomeCarta = nomeCarta.concat("spade");
+				}
+				
+				System.out.println("Estratto il " + nomeCarta);
+				System.out.print("vuoi chiedere un'altra carta al banco? (true/false)");
+				continuaAdEstrarre = s.nextBoolean();
+			} while(continuaAdEstrarre && contatoreMazzo > 0);
 			
 			
 		}
