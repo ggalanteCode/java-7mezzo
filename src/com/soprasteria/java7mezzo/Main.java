@@ -8,16 +8,16 @@ public class Main {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		Random r = new Random();
-		int[] mazzo = new int[10];
+		int[] mazzo = new int[40];
 		int cartaEstratta;
-		cartaEstratta = r.nextInt(10)+1;
+		cartaEstratta = r.nextInt(40)+1;
 		int j = 0;
 		while(true) {
 			if(mazzo[j] != 0 && cartaEstratta != mazzo[j]) {
 				j++;
 			} else {
 				mazzo[j] = cartaEstratta;
-				cartaEstratta = r.nextInt(10)+1;
+				cartaEstratta = r.nextInt(40)+1;
 				if(j==mazzo.length-1) {
 					break;
 				}
