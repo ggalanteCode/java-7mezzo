@@ -27,12 +27,12 @@ public class Main {
 		
 		Scanner s = new Scanner(System.in);
 			
-			int contatoreMazzo=39, cartaEstrattaGiocatore, 
-					cartaEstrattaBanco, punteggioGiocatore = 0, punteggioBanco = 0;
+			int contatoreMazzo=39, cartaEstrattaGiocatore;
 			boolean continuaAdEstrarre = false;
-			double punteggioCarta;
+			double punteggioCarta =0, punteggioGiocatore = 0;
 			String nomeCarta = "";
 			
+			//IL GIOCATORE ESTRAE
 			do {
 				System.out.println("Il giocatore chiede una carta al banco");
 				cartaEstrattaGiocatore = mazzo[contatoreMazzo];
@@ -65,7 +65,7 @@ public class Main {
 					break;
 				}
 				
-				
+				punteggioGiocatore += punteggioCarta;
 				
 				if(cartaEstrattaGiocatore > 0 && cartaEstrattaGiocatore <= 10) {
 					nomeCarta = nomeCarta.concat("bastoni");
@@ -77,9 +77,9 @@ public class Main {
 					nomeCarta = nomeCarta.concat("spade");
 				}
 				
-				System.out.println("Estratto il " + nomeCarta);
+				System.out.println("Estratto il " + nomeCarta + ", Punteggio del giocatore: " + punteggioGiocatore);
 				System.out.print("vuoi chiedere un'altra carta al banco? (true/false)");
-				continuaAdEstrarre = s.nextBoolean();
+				continuaAdEstrarre = s.nextBoolean(); s.nextLine();
 			} while(continuaAdEstrarre && contatoreMazzo > 0);
 			
 			s.close();
