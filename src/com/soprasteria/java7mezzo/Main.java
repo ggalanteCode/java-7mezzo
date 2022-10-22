@@ -8,29 +8,29 @@ public class Main {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		Random r = new Random();
-		Scanner s = new Scanner(System.in);
-		int[] mazzo = new int[40];
+		int[] mazzo = new int[10];
 		int cartaEstratta;
-		//generazione del mazzo di 40 carte tutte diverse
-		for(int i = 0; i < mazzo.length; i++) {
-			while(true) {
-				boolean presente = false;
-				cartaEstratta = r.nextInt(40)+1;
-				for(int j = 0; j < 40; j++) {
-					if(cartaEstratta == mazzo[j]) {	//ricerca lineare
-						presente = true;
-						break;
-					}
-				}
-				if(!presente) {
-					mazzo[i] = cartaEstratta;
+		cartaEstratta = r.nextInt(10)+1;
+		int j = 0;
+		while(true) {
+			if(mazzo[j] != 0 && cartaEstratta != mazzo[j]) {
+				j++;
+			} else {
+				mazzo[j] = cartaEstratta;
+				cartaEstratta = r.nextInt(10)+1;
+				if(j==mazzo.length-1) {
 					break;
 				}
+				j=0;
 			}
+		}
+		
+		Scanner s = new Scanner(System.in);
 			
-			int contatoreMazzo=39, punteggioCarta, cartaEstrattaGiocatore, 
+			int contatoreMazzo=39, cartaEstrattaGiocatore, 
 					cartaEstrattaBanco, punteggioGiocatore = 0, punteggioBanco = 0;
 			boolean continuaAdEstrarre = false;
+			double punteggioCarta;
 			String nomeCarta = "";
 			
 			do {
@@ -49,17 +49,23 @@ public class Main {
 				case 6:
 				case 7:
 					nomeCarta = moduloCarta + " di ";
+					punteggioCarta = moduloCarta;
 					break;
 				case 8:
 					nomeCarta = "donna di ";
+					punteggioCarta = 0.5;
 					break;
 				case 9:
 					nomeCarta = "cavallo di ";
+					punteggioCarta = 0.5;
 					break;
 				case 10:
 					nomeCarta = "re di ";
+					punteggioCarta = 0.5;
 					break;
 				}
+				
+				
 				
 				if(cartaEstrattaGiocatore > 0 && cartaEstrattaGiocatore <= 10) {
 					nomeCarta = nomeCarta.concat("bastoni");
@@ -76,8 +82,6 @@ public class Main {
 				continuaAdEstrarre = s.nextBoolean();
 			} while(continuaAdEstrarre && contatoreMazzo > 0);
 			
-			
+			s.close();
 		}
-	}
-
 }
